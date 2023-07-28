@@ -88,3 +88,7 @@ input {
       transform: translateX(1);
   }
 }
+
+#contador{
+  font-size: 5vw;
+}
