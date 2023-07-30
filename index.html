@@ -26,23 +26,28 @@
         <div class="row">
             <div class="col-sm-3" style="color: #dfdfdf;">
                 <!-- number counter -->
-                <h1><span id="contador">41</span></h1>
+                <h1><span id="contador">0</span></h1>
                 <h3>Cases completion</h3>
 
                 <h3>Warning:<textarea id="warning"></textarea></h3>
             </div>
-            <div class="col sm-3">
-                <input type="number" placeholder="PID" id="PID">
 
-                <input type="time" id="startTime">
-                <br>
-                
+            <!-- Changes in inputs -->
+<div class="col-sm-3">
+
+        <input class="input input-alt" placeholder="PID" required="" type="number">
+
+        <input class="input input-alt" type="time" id="startTime">
+
+</div>
+
+            <div>
                 <button type="button" class="btn btn-info" id="stopButton"> Finish</button>
             </div>
             <div class="col-sm-6">
 
                 <!-- seccion de botones  -->
-<!--                 <div class="col">
+                <!--                 <div class="col">
                     <button type="button" class="btn btn-secondary" id="btn"> Primary</button>
                     <button type="button" class="btn btn-secondary" id="btn" onclick=""> Secondary</button>
                     <button type="button" class="btn btn-secondary" id="btn" onclick=""> Espacios</button>
@@ -81,6 +86,12 @@
                         $(this).removeClass();
                         $(this).addClass("btn btn-primary")
                     });
+
+                    $("button").click(function () {
+
+$(this).removeClass();
+$(this).addClass("btn btn-warning")
+});
 
                     document.getElementById("PID").addEventListener("input",
                         function () {
