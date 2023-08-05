@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rick</title>
+    <title>Rick2</title>
     <link rel="stylesheet" type="text/css" href="estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -13,7 +13,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!--SweetAlert-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 </head>
 
 <body>
@@ -25,97 +24,172 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3" style="color: #dfdfdf;">
-                <!-- number counter -->
-                <h1><span id="contador">41</span></h1>
+                <h1>
+                    <div id="display" style="font-size: 50px;">0</div>
+                </h1>
                 <h3>Cases completion</h3>
-
                 <h3>Warning:<textarea id="warning"></textarea></h3>
+                <h3>Instructions:<textarea id="intructions"></textarea></h3>
             </div>
             <div class="col sm-3">
+                <!--Codigo time elapsed-->
                 <input type="number" placeholder="PID" id="PID">
-
+                <input type="number" placeholder="Item" id="item">
                 <input type="time" id="startTime">
                 <br>
-                
-                <button type="button" class="btn btn-info" id="stopButton"> Finish</button>
+                <button type="submit" class="btn btn-success" id="stopButton" style="width: 45vw;">
+                    Finish</button>
+                <!--Codigo time elapsed-->
             </div>
-            <div class="col-sm-6">
+            <!-- Moficar feature para DDT MCI -->
+            <!--  
+            <div class="col-sm-6">
+ 
+              <div class="col">
+                    <button type="button" class="btn btn-secondary" id="btn"> Primary</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Secondary</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Espacios</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Bite Set</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Teen</button>
+ 
+ 
+ 
+ 
+                    <button type="button" class="btn btn-secondary" id="btn"> Boton</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Attachments</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Warranty</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Idioma</button>
+                </div>
+                <div class="col">
+ 
+ 
+                    <button type="button" class="btn btn-secondary" id="btn"> Cortes</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Passive</button>
+                    <button type="button" class="btn btn-secondary" id="btn"> Instrucciones</button>
+                    <button type="button" class="btn btn-secondary" id="btn" style="width: 95%;">
+                        Reject/Task/Pool</button>
+                </div> -->
 
-                <!-- seccion de botones  -->
-<!--                 <div class="col">
-                    <button type="button" class="btn btn-secondary" id="btn"> Primary</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Secondary</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Espacios</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Bite Set</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Teen</button>
+            <script type="text/javascript">
+                /* Descomentar este script para funcionalidad de botones MCI */
 
-
-
-
-                    <button type="button" class="btn btn-secondary" id="btn"> Boton</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Attachments</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Warranty</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Idioma</button>
-                </div>
-                <div class="col">
-
-
-                    <button type="button" class="btn btn-secondary" id="btn"> No cortar</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Passive</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Instrucciones</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> No Exclusiones</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> RTM</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Hard Detailing</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Reject/Task</button>
-                </div> -->
-                <script type="text/javascript">
-
-
-                    $("button").click(function () {
-
-                        $(this).removeClass();
-                        $(this).addClass("btn btn-warning")
-                    });
-
-                    $("button").dblclick(function () {
-                        $(this).removeClass();
-                        $(this).addClass("btn btn-primary")
-                    });
-
-                    document.getElementById("PID").addEventListener("input",
-                        function () {
-                            var startTime = new Date();
-                            document.getElementById("startTime").value = startTime.toISOString().slice(0, -1);
-                        });
-
-
-
-                    document.getElementById("stopButton").addEventListener("click", function () {
-                        var endTime = new Date();
-                        var elapsedTime = endTime - startTime;
-                        swal({
-                            title: "Hiciste la segunda revision?",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Caso enviado" + "Tiempo transcurrido: " + elapsedTime, {
-                                        icon: "success",
+                /*
+                                    $("button").click(function () {
+                 
+                                        $(this).removeClass();
+                                        $(this).addClass("btn btn-warning")
                                     });
-                                } else {
-                                    swal("Revisa otra vez!");
-                                }
-                            });
+                 
+                                    $("button").dblclick(function () {
+                                        $(this).removeClass();
+                                        $(this).addClass("btn btn-primary")
+                                    }); */
+
+                /* parte de Tiempo (Time stamp) */
+
+                var currentDate = new Date();
+
+                var hours = currentDate.getHours();
+                var minutes = currentDate.getMinutes();
+                var seconds = currentDate.getSeconds();
+
+                var timeString = hours + ':' + minutes + ':' + seconds;
+
+                document.getElementById("PID").addEventListener("PID",
+                    function () {
+                        var startTime = currentDate;
+                        document.getElementById("startTime").value = startTime.toISOString().slice(0, -1);
                     });
 
-                </script>
-            </div>
+                document.getElementById("stopButton").addEventListener("click", function () {
+                    var endTime = new Date();
+                    var elapsedTime = endTime - startTime;
+                    swal({
+                        title: "Hiciste la segunda revision?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                swal("Caso enviado" + "Tiempo transcurrido: " + elapsedTime, {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal("Revisa otra vez!");
+                            }
+                        });
+                });
+
+                console.log('Hora actual:' + timeString);
+
+
+                /*                     document.getElementById("PID").addEventListener("input",
+                                        function () {
+                                            var startTime = new Date();
+                                            document.getElementById("startTime").value = startTime.toISOString().slice(0, -1);
+                                        });
+                 
+                 
+                 
+                                    document.getElementById("stopButton").addEventListener("click", function () {
+                                        var endTime = new Date();
+                                        var elapsedTime = endTime - startTime;
+                                        swal({
+                                            title: "Hiciste la segunda revision?",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
+                                            .then((willDelete) => {
+                                                if (willDelete) {
+                                                    swal("Caso enviado" + "Tiempo transcurrido: " + elapsedTime, {
+                                                        icon: "success",
+                                                    });
+                                                } else {
+                                                    swal("Revisa otra vez!");
+                                                }
+                                            });
+                                    }); */
+
+                let count = 0;
+
+                const button = document.getElementById("stopButton");
+                const display = document.getElementById("display");
+
+
+                button.addEventListener('click', () => {
+                    count += 1;
+                    display.textContent = count;
+                });
+            </script>
+            <!--                 <div>
+                    <a
+                        href="https://apps.powerapps.com/play/447c57db-dadb-4ebf-a460-954448938cdb?tenantId=9ac44c96-980a-481b-ae23-d8f56b82c605">
+                        <button type="button" class="btn btn-success"> SARA</button>
+                    </a>
+                </div> -->
+
         </div>
     </div>
+    <!--Lista de casos-->
+    <div>
+        <ul id="list"></ul>
+        <script>
+            const input = document.getElementById('PID');
+            //no es necesario crear la constante para boton ya esta declarada//
+            const list = document.getElementById('list');
 
-
+            button.addEventListener('click', () => {
+                const item = input.value;
+                input.value = '';
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        </script>
+    </div>
+    </div>
 </body>
 
 </html>
