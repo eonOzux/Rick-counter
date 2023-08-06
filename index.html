@@ -13,7 +13,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!--SweetAlert-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 </head>
 
 <body>
@@ -24,109 +23,95 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3" style="color: #dfdfdf;">
-                <!-- number counter -->
-                <h1><span id="contador">0</span></h1>
+            <div class="col-6" style="color: #dfdfdf;">
+                <h1>
+                    <div id="display" style="font-size: 50px;">0</div>
+                </h1>
                 <h3>Cases completion</h3>
-
                 <h3>Warning:<textarea id="warning"></textarea></h3>
+                <h3>Instructions:<textarea id="intructions"></textarea></h3>
+            </div>
+            <div class="col-6">
+                <!--Codigo time elapsed-->
+                <input class="input" type="number" placeholder="PID" id="PID" style="width: 230px;">
+                <input class="input" type="time" id="startTime" style="width: 230px;">
+                <br>
+                <button type="submit" class="btn btn-success" id="stopButton" style="width: 110px;">
+                    Finish</button>
+                <!--Codigo time elapsed-->
             </div>
 
-            <!-- Changes in inputs -->
-<div class="col-sm-3">
+            <script type="text/javascript">
+                /* (Time stamp) */
 
-        <input class="input input-alt" placeholder="PID" required="" type="number">
+                var currentDate = new Date();
 
-        <input class="input input-alt" type="time" id="startTime">
+                var hours = currentDate.getHours();
+                var minutes = currentDate.getMinutes();
+                var seconds = currentDate.getSeconds();
 
-</div>
+                var timeString = hours + ':' + minutes + ':' + seconds;
 
-            <div>
-                <button type="button" class="btn btn-info" id="stopButton"> Finish</button>
-            </div>
-            <div class="col-sm-6">
-
-                <!-- seccion de botones  -->
-                <!--                 <div class="col">
-                    <button type="button" class="btn btn-secondary" id="btn"> Primary</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Secondary</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Espacios</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Bite Set</button>
-                    <button type="button" class="btn btn-secondary" id="btn" onclick=""> Teen</button>
-
-
-
-
-                    <button type="button" class="btn btn-secondary" id="btn"> Boton</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Attachments</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Warranty</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Idioma</button>
-                </div>
-                <div class="col">
-
-
-                    <button type="button" class="btn btn-secondary" id="btn"> No cortar</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Passive</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Instrucciones</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> No Exclusiones</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> RTM</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Hard Detailing</button>
-                    <button type="button" class="btn btn-secondary" id="btn"> Reject/Task</button>
-                </div> -->
-                <script type="text/javascript">
-
-
-                    $("button").click(function () {
-
-                        $(this).removeClass();
-                        $(this).addClass("btn btn-warning")
+                document.getElementById("PID").addEventListener("PID",
+                    function () {
+                        var startTime = currentDate;
+                        document.getElementById("startTime").value = startTime.toISOString().slice(0, -1);
                     });
 
-                    $("button").dblclick(function () {
-                        $(this).removeClass();
-                        $(this).addClass("btn btn-primary")
-                    });
-
-                    $("button").click(function () {
-
-$(this).removeClass();
-$(this).addClass("btn btn-warning")
-});
-
-                    document.getElementById("PID").addEventListener("input",
-                        function () {
-                            var startTime = new Date();
-                            document.getElementById("startTime").value = startTime.toISOString().slice(0, -1);
+                document.getElementById("stopButton").addEventListener("click", function () {
+                    var endTime = new Date();
+                    var elapsedTime = endTime - startTime;
+                    swal({
+                        title: "Hiciste la segunda revision?",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                swal("Caso enviado" + "Tiempo transcurrido: " + timeString, {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal("Revisa otra vez!");
+                            }
                         });
+                });
+
+                console.log('Hora actual:' + timeString);
 
 
+                let count = 0;
 
-                    document.getElementById("stopButton").addEventListener("click", function () {
-                        var endTime = new Date();
-                        var elapsedTime = endTime - startTime;
-                        swal({
-                            title: "Hiciste la segunda revision?",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Caso enviado" + "Tiempo transcurrido: " + elapsedTime, {
-                                        icon: "success",
-                                    });
-                                } else {
-                                    swal("Revisa otra vez!");
-                                }
-                            });
-                    });
+                const button = document.getElementById("stopButton");
+                const display = document.getElementById("display");
 
-                </script>
-            </div>
+
+                button.addEventListener('click', () => {
+                    count += 1;
+                    display.textContent = count;
+                });
+            </script>
         </div>
     </div>
+    <!--Lista de casos-->
+    <div>
+        <ul id="list"></ul>
+        <script>
+            const input = document.getElementById('PID');
+            //no es necesario crear la constante para boton ya esta declarada//
+            const list = document.getElementById('list');
 
-
+            button.addEventListener('click', () => {
+                const item = input.value;
+                input.value = '';
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        </script>
+    </div>
+    </div>
 </body>
 
 </html>
