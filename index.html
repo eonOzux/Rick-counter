@@ -8,14 +8,15 @@
     <link rel="stylesheet" type="text/css" href="estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="main.js"></script>
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!--SweetAlert-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
+
     <div>
         <div class="wave"></div>
         <div class="wave"></div>
@@ -23,95 +24,66 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-6" style="color: #dfdfdf;">
+            <div class="col-sm-3" style="color: #dfdfdf;">
                 <h1>
                     <div id="display" style="font-size: 50px;">0</div>
                 </h1>
-                <h3>Cases completion</h3>
-                <h3>Warning:<textarea id="warning"></textarea></h3>
-                <h3>Instructions:<textarea id="intructions"></textarea></h3>
+                <!--                 <h3>Cases completion</h3>
+ -->
+                <h3>Vivera Counter</h3>
+
+                <!--   <h3>Warning:<textarea id="warning"></textarea></h3>
+                <h3>Instructions:<textarea id="intructions"></textarea></h3> -->
             </div>
-            <div class="col-6">
+
+            <div class="col sm-3">
+
                 <!--Codigo time elapsed-->
-                <input class="input" type="number" placeholder="PID" id="PID" style="width: 230px;">
-                <input class="input" type="time" id="startTime" style="width: 230px;">
+                <input type="number" placeholder="PID" id="PID" required>
+                <!--                 <input type="number" placeholder="Item" id="item">
+             -->
+                <input type="time" id="startTime">
                 <br>
-                <button type="submit" class="btn btn-success" id="stopButton" style="width: 110px;">
-                    Finish</button>
+
+                <button type="submit" class="btn btn-success" id="stopButton" style="width: 45vw;"> Finish</button>
+
                 <!--Codigo time elapsed-->
             </div>
 
-            <script type="text/javascript">
-                /* (Time stamp) */
+            <!-- Moficar feature para DDT MCI -->
 
-                var currentDate = new Date();
+            <div class="col-sm-6">
 
-                var hours = currentDate.getHours();
-                var minutes = currentDate.getMinutes();
-                var seconds = currentDate.getSeconds();
+                <div class="col">
+                    <button type="button" class="btn btn-secondary" id="btn" value="Gingivitis"> Gingivitis</button>
+                    <button type="button" class="btn btn-secondary" id="btn" value="Brackets"> Brackets</button>
+                    <button type="button" class="btn btn-secondary" id="btn" value="Lingual"> Lingual</button>
+                    <button type="button" class="btn btn-secondary" id="btn" value="Warranty"> Warranty</button>
+                    <button type="button" class="btn btn-secondary" id="btn" value="Revision"> Revision</button>
+                    <button type="button" class="btn btn-secondary" id="btn" value="Ponticos"> Ponticos</button>
+                    <button type="button" class="btn btn-secondary" id="btn" value="RTM"> RTM</button>
 
-                var timeString = hours + ':' + minutes + ':' + seconds;
+                </div>
 
-                document.getElementById("PID").addEventListener("PID",
-                    function () {
-                        var startTime = currentDate;
-                        document.getElementById("startTime").value = startTime.toISOString().slice(0, -1);
-                    });
+                <div>
+                    <a
+                        href="">
+                        <button type="button" class="btn btn-success">SARA</button>
+                    </a>
+                </div>
+            </div>
+            <script src="counter.js"></script>
+            <script src="time_elapsed.js"></script>
+        </div>
+        <!--Lista de casos-->
+        <div>
+            <ul id="list"></ul>
 
-                document.getElementById("stopButton").addEventListener("click", function () {
-                    var endTime = new Date();
-                    var elapsedTime = endTime - startTime;
-                    swal({
-                        title: "Hiciste la segunda revision?",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                swal("Caso enviado" + "Tiempo transcurrido: " + timeString, {
-                                    icon: "success",
-                                });
-                            } else {
-                                swal("Revisa otra vez!");
-                            }
-                        });
-                });
-
-                console.log('Hora actual:' + timeString);
-
-
-                let count = 0;
-
-                const button = document.getElementById("stopButton");
-                const display = document.getElementById("display");
-
-
-                button.addEventListener('click', () => {
-                    count += 1;
-                    display.textContent = count;
-                });
-            </script>
+            <script src="listCases.js"></script>
         </div>
     </div>
-    <!--Lista de casos-->
-    <div>
-        <ul id="list"></ul>
-        <script>
-            const input = document.getElementById('PID');
-            //no es necesario crear la constante para boton ya esta declarada//
-            const list = document.getElementById('list');
 
-            button.addEventListener('click', () => {
-                const item = input.value;
-                input.value = '';
-                const li = document.createElement('li');
-                li.textContent = item;
-                list.appendChild(li);
-            });
-        </script>
-    </div>
-    </div>
+
 </body>
 
 </html>

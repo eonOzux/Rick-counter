@@ -12,7 +12,18 @@ body {
   margin-top: 200px;
 }
 
-
+/* Para contador de casos */
+.wrapper {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  }
 
 .counter {
   animation-duration: 1s;
@@ -24,6 +35,11 @@ input {
 }
 
 #warning {
+  height: 120px;
+  width: 400px;
+  font-size: 13px;
+}
+#intructions{
   height: 120px;
   width: 400px;
   font-size: 13px;
@@ -89,32 +105,10 @@ input {
   }
 }
 
-/* new inputs */
-.input {
-  color: #fff;
-  font-size: 0.9rem;
-  background-color: transparent;
-  width: 100%;
-  box-sizing: border-box;
-  padding-inline: 0.5em;
-  padding-block: 0.7em;
-  border: none;
-  border-bottom: var(--border-height) solid var(--border-before-color);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+#btn{
+  margin-bottom: 10px;
 }
 
-.input:focus {
-  outline: none;
-}
-
-.input:focus + .input-border {
-  width: 100%;
-}
-
-
-.input-alt {
-  font-size: 1.2rem;
-  padding-inline: 1em;
-  padding-block: 0.8em;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ul{
+  color: azure;
 }
